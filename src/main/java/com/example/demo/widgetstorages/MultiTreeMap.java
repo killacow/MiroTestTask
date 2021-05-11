@@ -13,6 +13,14 @@ public class MultiTreeMap {
         this.keyExtractor = keyExtractor;
     }
 
+    private static Collection<StoredWidget> unwrap(Collection<HashMap<UUID, StoredWidget>> wrappedValues) {
+        ArrayList<StoredWidget> result = new ArrayList<>(wrappedValues.size());
+        for (HashMap<UUID, StoredWidget> wrappedValue : wrappedValues) {
+            result.addAll(wrappedValue.values());
+        }
+        return result;
+    }
+
     public void put(StoredWidget widget) {
         Integer key = keyExtractor.apply(widget);
         HashMap<UUID, StoredWidget> values = treeMap.get(key);
@@ -54,14 +62,6 @@ public class MultiTreeMap {
     public Collection<StoredWidget> unwrappedTail(Integer bound) {
         Collection<HashMap<UUID, StoredWidget>> wrappedValues = tail(bound).values();
         return unwrap(wrappedValues);
-    }
-
-    private static Collection<StoredWidget> unwrap(Collection<HashMap<UUID, StoredWidget>> wrappedValues) {
-        ArrayList<StoredWidget> result = new ArrayList<>(wrappedValues.size());
-        for (HashMap<UUID, StoredWidget> wrappedValue : wrappedValues) {
-            result.addAll(wrappedValue.values());
-        }
-        return result;
     }
 
     private boolean contains(NavigableMap<Integer, HashMap<UUID, StoredWidget>> map, StoredWidget widget) {

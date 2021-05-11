@@ -19,6 +19,12 @@ public class WidgetStorage implements IWidgetStorage {
         this.lock = new StampedLock();
     }
 
+    private static Widget toWidget(StoredWidget widget) {
+        if (widget == null)
+            return null;
+        return new Widget(widget.getId(), widget.getX(), widget.getY(), widget.getZ(), widget.getWidth(), widget.getHeight(), widget.getLastModifiedDate());
+    }
+
     public Widget create(WidgetCreateRequest widgetCreateRequest) {
         UUID id = UUID.randomUUID();
         boolean putOnTop = widgetCreateRequest.getZ() == null;
@@ -156,11 +162,5 @@ public class WidgetStorage implements IWidgetStorage {
             }
             widgetsSortedByZ.put(widgetToInsert.getZ(), widgetToInsert);
         }
-    }
-
-    private static Widget toWidget(StoredWidget widget) {
-        if (widget == null)
-            return null;
-        return new Widget(widget.getId(), widget.getX(), widget.getY(), widget.getZ(), widget.getWidth(), widget.getHeight(), widget.getLastModifiedDate());
     }
 }

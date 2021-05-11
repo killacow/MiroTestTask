@@ -9,8 +9,12 @@ import java.util.UUID;
 
 public interface IWidgetStorage {
     Widget create(WidgetCreateRequest widgetCreateRequest);
+
     Widget read(UUID id);
+
     List<Widget> read();
+
     Widget update(UUID id, WidgetUpdateRequest widgetUpdateRequest);
+
     Widget delete(UUID id);
 }

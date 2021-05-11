@@ -5,8 +5,6 @@ import com.example.demo.models.WidgetCreateRequest;
 import com.example.demo.models.WidgetUpdateRequest;
 import com.example.demo.widgetstorages.WidgetStorageWithPagingAndFiltering;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
